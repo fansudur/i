@@ -1,0 +1,25 @@
+Copyright (c) 2026 fansudur. All rights reserved.
+
+This repository ("the Work") — the source code together with the artwork it
+expresses — is made publicly viewable for reference only. No license or right
+is granted to copy, modify, redistribute, publish, sublicense, sell, or create
+derivative works from any part of the Work, in whole or in part, without the
+prior written permission of the author. Viewing the source grants no other right.
+
+THIRD-PARTY COMPONENTS
+The files under `vendor/` are third-party libraries (three.js, lil-gui, and
+others) and remain under their own respective licenses (MIT). Those licenses
+apply to those files only; this "All Rights Reserved" notice applies to the
+author's own code and to the artwork.
+
+--------------------------------------------------------------------------------
+
+版权所有 (c) 2026 fansudur。保留所有权利。
+
+本仓库(“作品”)——源码及其所表达的装置作品——仅供公开浏览参考。未经作者
+事先书面许可,不得以任何形式复制、修改、再分发、发布、再许可、出售,或制作
+任何衍生作品(无论整体或部分)。浏览源码不构成任何其他授权。
+
+第三方组件
+`vendor/` 目录下为第三方库(three.js、lil-gui 等),保留其各自的许可(MIT)。
+该许可仅适用于这些文件;本“保留所有权利”声明仅适用于作者自有代码与作品。

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>∅ | UN</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #07090d; }
+  canvas { touch-action: none; display: block; } /* 手势全交给 OrbitControls/拖拽, 不让浏览器抢去滚动/缩放 */
+  #info { /* 左上角项目标识: 符号 + 名字, 仅此而已(几何本身承载意义, 不需要文字解说) */
+    position: fixed; left: 14px; top: 12px; z-index: 10;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    text-shadow: 0 1px 2px #000; pointer-events: none; user-select: none;
+  }
+  #mark { font-size: 17px; letter-spacing: 0.18em; color: #e6eef8; }
+  #markName { font-size: 11px; letter-spacing: 0.3em; color: #7f8a99; margin-top: 2px; }
+  #warn {
+    position: fixed; left: 12px; bottom: 12px; z-index: 10;
+    font: 13px/1.5 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: #ff5ad0; text-shadow: 0 1px 2px #000; pointer-events: none; display: none; max-width: 60%;
+  }
+  #play { /* 页面浮动 播放/停止: 直接控人物行走, 不用进面板找 */
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; z-index: 11;
+    font: 13px/1 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; letter-spacing: 0.12em;
+    color: #e6eef8; background: rgba(18,24,32,0.72); border: 1px solid #2a3a4a; border-radius: 20px;
+    padding: 9px 20px; cursor: pointer; user-select: none; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  }
+  #play:hover { background: rgba(40,52,66,0.9); }
+  #panelBtn { /* 弹出/收回参数面板: 各端均显示(代替占地长条 + 桌面"点面板顶部"才能收的麻烦); 默认收起 */
+    display: block; position: fixed; right: 14px; bottom: 14px; z-index: 10000;
+    font: 13px/1 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; letter-spacing: 0.1em;
+    color: #e6eef8; background: rgba(18,24,32,0.82); border: 1px solid #2a3a4a; border-radius: 20px;
+    padding: 9px 16px; cursor: pointer; user-select: none; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  }
+  #introBar { /* 片头时间条: 暂停/拖拽回放创世动画(仅片头进行中显示) */
+    display: none; position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 12;
+    align-items: center; gap: 10px; padding: 7px 14px;
+    background: rgba(18,24,32,0.74); border: 1px solid #2a3a4a; border-radius: 22px;
+    backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); user-select: none;
+  }
+  #introBar button { background: none; border: none; color: #e6eef8; font-size: 15px; cursor: pointer; padding: 2px 6px; line-height: 1; }
+  #introBar input[type=range] { width: 40vw; max-width: 460px; accent-color: #6ab4ff; cursor: pointer; }
+  .lil-gui.root { top: auto; bottom: 0; right: 0; max-height: 96vh; } /* 面板挪到右下角; 超高可滚动 */
+  .lil-gui.autoPlace { right: 0; }
+  /* 移动端: 侧边栏由 JS 默认收起; 标识两行不挡画面, 各端均显示 */
+  @media (max-width: 820px) {            /* 窄屏: 面板限宽可滚动 + 控件加大便于触摸 */
+    .lil-gui.root { --width: 84vw; max-width: 320px; max-height: 88vh; }
+    .lil-gui { --widget-height: 26px; --font-size: 12px; --input-font-size: 12px; }
+    #mark { font-size: 15px; } #markName { font-size: 10px; }
+    #panelBtn { display: block; }       /* 移动端才显示参数键; 面板由它弹出/收回 */
+    #play { left: 14px; transform: none; bottom: 14px; } /* 播放在左下(拇指可够), 参数键在右下, 不重叠 */
+  }
+</style>
+</head>
+<body>
+<div id="info">
+  <div id="mark">∅ | UN</div>
+  <div id="markName">Incidence</div>
+</div>
+<div id="warn"></div>
+<button id="play">▶ 播放</button>
+<button id="panelBtn">⚙ 参数</button>
+<div id="introBar"><button id="ibPlay" title="暂停 / 播放">⏸</button><input id="ibSeek" type="range" min="0" max="1000" value="0" step="1" title="拖拽回放创世动画"><button id="ibReplay" title="从头重播">↺</button></div>
+<audio id="bgm" loop preload="none"></audio><!-- 背景音乐: 默认无 src, 首次开启才加载 bgm.mp3(不进首屏) -->
+
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/": "./vendor/addons/",
+    "three/examples/jsm/": "./vendor/addons/",
+    "three-mesh-bvh": "./vendor/three-mesh-bvh.module.js",
+    "three-gpu-pathtracer": "./vendor/three-gpu-pathtracer.module.js",
+    "lil-gui": "./vendor/lil-gui.esm.js"
+  }
+}
+</script>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
