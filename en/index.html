@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -15,7 +15,7 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   canvas {
@@ -79,7 +79,7 @@
   }
 
   #menuBtn {
-    font: 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font: 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     list-style: none;
   }
 
@@ -154,7 +154,7 @@
     padding: 9px 12px;
     color: #edf4ff;
     background: rgba(54, 68, 86, 0.7);
-    font: 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font: 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     letter-spacing: 0.06em;
     cursor: pointer;
     white-space: nowrap;
@@ -215,7 +215,7 @@
     #controls a {
       padding: 9px 11px;
       font-size: 12px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
   }
 </style>
@@ -227,14 +227,14 @@
 </div>
 <div id="actionDock">
   <details id="actionMenu">
-    <summary id="menuBtn" aria-label="打开选项">⋯</summary>
+    <summary id="menuBtn" aria-label="Open options">⋯</summary>
     <div id="controls">
-      <button id="viewBtn" type="button">回到观影位置</button>
-      <button id="replayBtn" type="button">重播片头</button>
-      <a id="language" href="./en/" hreflang="en" aria-label="English version">English</a>
+      <button id="viewBtn" type="button">Viewing Position</button>
+      <button id="replayBtn" type="button">Replay Opening</button>
+      <a id="language" href="../" hreflang="zh-CN" aria-label="Chinese version">中文</a>
     </div>
   </details>
-  <button id="walkBtn" type="button" data-walk="▶" data-stop="Ⅱ" aria-label="播放人物行走">▶</button>
+  <button id="walkBtn" type="button" data-walk="▶" data-stop="Ⅱ" aria-label="Play walkers">▶</button>
 </div>
 <script>
 document.getElementById("controls").addEventListener("click", (event) => {
@@ -248,14 +248,14 @@ document.getElementById("controls").addEventListener("click", (event) => {
 <script type="importmap">
 {
   "imports": {
-    "three": "./vendor/three.module.js",
-    "three/addons/": "./vendor/addons/",
-    "three/examples/jsm/": "./vendor/addons/",
-    "three-mesh-bvh": "./vendor/three-mesh-bvh.module.js",
-    "three-gpu-pathtracer": "./vendor/three-gpu-pathtracer.module.js"
+    "three": "../vendor/three.module.js",
+    "three/addons/": "../vendor/addons/",
+    "three/examples/jsm/": "../vendor/addons/",
+    "three-mesh-bvh": "../vendor/three-mesh-bvh.module.js",
+    "three-gpu-pathtracer": "../vendor/three-gpu-pathtracer.module.js"
   }
 }
 </script>
-<script type="module" src="./app.js"></script>
+<script type="module" src="../app.js"></script>
 </body>
 </html>
