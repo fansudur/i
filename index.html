@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>∅ | UN — Incidence</title>
-<meta name="description" content="谁在哪里观察,就得到什么样的世界。观察开始的那一刻,一切已被注定——看似理所当然的一幅画,实则多层多面,互不可越。FANSUDUR 的镜面反射装置《Incidence》。" />
+<meta name="description" content="世界取决于谁在什么位置观察,一切在观察开始那刻已被注定。光便有了路径,你的人生是被光路早已锁定的不同阶段。FANSUDUR 的镜面反射装置《Incidence》。" />
 <meta property="og:title" content="∅ | UN — Incidence" />
-<meta property="og:description" content="谁在哪里观察,就得到什么样的世界。观察开始的那一刻,一切已被注定——看似理所当然的一幅画,实则多层多面,互不可越。FANSUDUR 的镜面反射装置《Incidence》。" />
+<meta property="og:description" content="世界取决于谁在什么位置观察,一切在观察开始那刻已被注定。光便有了路径,你的人生是被光路早已锁定的不同阶段。FANSUDUR 的镜面反射装置《Incidence》。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://incidence.fansudur.com/" />
 <meta name="twitter:card" content="summary" />
@@ -59,19 +59,22 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 0.82em;
-    height: 0.82em;
+    width: 1em;
+    height: 1em;
     box-sizing: border-box;
-    border: 0;
-    border-radius: 0;
     flex: 0 0 auto;
-    font-family: "Segoe UI Symbol", "Noto Sans Symbols", "DejaVu Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Segoe UI Symbol", "Noto Sans Symbols", "DejaVu Sans", "Arial Unicode MS", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 1.08em;
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
     line-height: 1;
+    letter-spacing: 0;
   }
 
   .emptySymbol::before {
     content: "∅";
+    display: block;
   }
 
   #name {
@@ -85,7 +88,7 @@
     position: fixed;
     left: 16px;
     bottom: 16px;
-    z-index: 12;
+    z-index: 32;
     display: flex;
     align-items: flex-end;
     gap: 9px;
@@ -103,7 +106,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(112, 132, 158, 0.34);
+    border: 1px solid rgba(112, 132, 158, 0.16);
     border-radius: 50%;
     background: rgba(13, 18, 25, 0.74);
     color: #edf4ff;
@@ -128,8 +131,6 @@
   }
 
   #aboutBtn .emptySymbol {
-    width: auto;
-    height: auto;
     font-size: 21px;
   }
 
@@ -178,7 +179,7 @@
     gap: 7px;
     min-width: 138px;
     padding: 7px;
-    border: 1px solid rgba(112, 132, 158, 0.3);
+    border: 1px solid rgba(112, 132, 158, 0.14);
     border-radius: 18px;
     background: rgba(13, 18, 25, 0.74);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
@@ -200,7 +201,7 @@
   #controls a {
     appearance: none;
     display: block;
-    border: 1px solid rgba(112, 132, 158, 0.18);
+    border: 1px solid rgba(112, 132, 158, 0.1);
     border-radius: 18px;
     padding: 9px 12px;
     color: #edf4ff;
@@ -244,50 +245,89 @@
 
   #aboutDialog {
     position: relative;
-    width: min(620px, calc(100vw - 48px));
-    max-height: min(70vh, 680px);
-    overflow-y: auto;
+    width: fit-content;
+    min-width: min(380px, calc(100vw - 48px));
+    max-width: min(600px, calc(100vw - 48px));
+    max-height: calc(100vh - 164px);
+    max-height: calc(100dvh - 164px);
+    overflow: hidden;
     box-sizing: border-box;
-    border: 1px solid rgba(143, 160, 184, 0.34);
+    border: 1px solid rgba(143, 160, 184, 0.14);
     border-radius: 22px;
-    padding: 34px 34px 28px;
+    padding: 0;
     color: #edf4ff;
-    background: rgba(8, 11, 16, 0.88);
+    background: rgba(8, 11, 16, 0.96);
     box-shadow: 0 22px 70px rgba(0, 0, 0, 0.48);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     outline: none;
   }
 
-  #aboutClose {
+  #aboutDialog::after {
+    content: "";
     position: absolute;
-    right: 14px;
-    top: 12px;
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(112, 132, 158, 0.28);
-    border-radius: 50%;
-    color: #edf4ff;
-    background: rgba(54, 68, 86, 0.54);
-    font: 22px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    cursor: pointer;
+    right: 12px;
+    top: 56px;
+    bottom: 28px;
+    width: 1px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(116, 132, 154, 0.26) 12%,
+      rgba(116, 132, 154, 0.32) 88%,
+      transparent
+    );
+    pointer-events: none;
   }
 
-  #aboutClose:hover {
-    background: rgba(78, 96, 120, 0.82);
+  #aboutScroll {
+    max-height: inherit;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 34px 38px 28px 34px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #aboutScroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  #aboutScroll::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  #aboutScroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  #aboutScroll::-webkit-scrollbar-thumb {
+    background: transparent;
   }
 
   .about-copy {
     white-space: pre-line;
-    font: 15px/1.74 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font: 15px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     letter-spacing: 0.02em;
   }
 
   .about-signature {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-top: 26px;
     color: #8b94a2;
     font-size: 12px;
     letter-spacing: 0.08em;
+  }
+
+  .about-signature .emptySymbol {
+    font-size: 1.02em;
+    letter-spacing: 0;
   }
 
   .srOnly {
@@ -357,16 +397,28 @@
     }
 
     #aboutDialog {
-      width: calc(100vw - 28px);
-      max-height: calc(100vh - 164px);
-      max-height: calc(100dvh - 164px);
+      width: fit-content;
+      min-width: min(336px, calc(100vw - 28px));
+      max-width: calc(100vw - 28px);
+      max-height: calc(100vh - 156px);
+      max-height: calc(100dvh - 156px);
       border-radius: 20px;
-      padding: 30px 22px 24px;
+      padding: 0;
+    }
+
+    #aboutScroll {
+      padding: 30px 36px 24px 22px;
+    }
+
+    #aboutDialog::after {
+      right: 10px;
+      top: 54px;
+      bottom: 24px;
     }
 
     .about-copy {
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.62;
     }
   }
 </style>
@@ -377,7 +429,7 @@
   <div id="name">Incidence</div>
 </div>
 <div id="actionDock">
-  <button id="aboutBtn" type="button" aria-label="作品说明"><span class="emptySymbol" aria-hidden="true"></span></button>
+  <button id="aboutBtn" type="button" aria-label="作品说明" aria-expanded="false" aria-controls="aboutOverlay"><span class="emptySymbol" aria-hidden="true"></span></button>
   <details id="actionMenu">
     <summary id="menuBtn" aria-label="打开选项">⋯</summary>
     <div id="controls">
@@ -390,22 +442,32 @@
 </div>
 <div id="aboutOverlay" aria-hidden="true">
   <section id="aboutDialog" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" tabindex="-1">
-    <button id="aboutClose" type="button" aria-label="关闭">×</button>
     <h2 id="aboutTitle" class="srOnly">作品说明</h2>
-    <div class="about-copy">睁开眼睛,即世界存在。
-世界取决于谁在什么位置观察它,
-一切在观察开始的那一刻被注定。
+    <div id="aboutScroll">
+      <div class="about-copy">世界取决于谁在什么位置观察
+一切在观察开始那刻已被注定
 
-从你的第一个选择开始,你就有了自己的光的路径。
-你的运动,是它在不同空间里的时间切片;
-你的一生,是被它精准锁定的不同阶段与层级;
-你的世界,是光经过时设定好的结界。
+睁眼那刻 光便有了路径
 
-看似理所当然的一个世界、一幅画面,往往多面而多层
-彼此看得见,却无法跨越,无法互相理解。
+你的运动 是在不同空间中的时间切片
+你的人生 是被光路早已锁定的不同阶段
+你的世界 是光经过时早已设好的结界
 
-而此刻,你正站在唯一让这一切成立的位置上。</div>
-    <div class="about-signature">∅ | UN — Incidence · FANSUDUR</div>
+我们看似在一个世界
+却往往多层多面
+似乎看见彼此
+却又分不清
+是真还是镜面虚像的切片
+
+不在我的位置
+你我终究
+无法互相理解
+
+而此刻
+你正在
+唯一让这一切成立的位置上</div>
+      <div class="about-signature"><span class="emptySymbol" aria-hidden="true"></span><span>| UN — Incidence · FANSUDUR</span></div>
+    </div>
   </section>
 </div>
 <script>
@@ -415,7 +477,6 @@ const controls = document.getElementById("controls");
 const aboutBtn = document.getElementById("aboutBtn");
 const aboutOverlay = document.getElementById("aboutOverlay");
 const aboutDialog = document.getElementById("aboutDialog");
-const aboutClose = document.getElementById("aboutClose");
 
 const stopShellEvent = (event) => {
   event.stopPropagation();
@@ -430,6 +491,7 @@ const openAbout = () => {
   actionMenu.removeAttribute("open");
   aboutOverlay.classList.add("is-open");
   aboutOverlay.setAttribute("aria-hidden", "false");
+  aboutBtn.setAttribute("aria-expanded", "true");
   aboutBtn.classList.add("is-active");
   aboutDialog.focus({ preventScroll: true });
 };
@@ -437,8 +499,17 @@ const openAbout = () => {
 const closeAbout = () => {
   aboutOverlay.classList.remove("is-open");
   aboutOverlay.setAttribute("aria-hidden", "true");
+  aboutBtn.setAttribute("aria-expanded", "false");
   aboutBtn.classList.remove("is-active");
   aboutBtn.focus({ preventScroll: true });
+};
+
+const toggleAbout = () => {
+  if (aboutOverlay.classList.contains("is-open")) {
+    closeAbout();
+  } else {
+    openAbout();
+  }
 };
 
 controls.addEventListener("click", (event) => {
@@ -449,8 +520,7 @@ controls.addEventListener("click", (event) => {
   }
 });
 
-aboutBtn.addEventListener("click", openAbout);
-aboutClose.addEventListener("click", closeAbout);
+aboutBtn.addEventListener("click", toggleAbout);
 
 aboutOverlay.addEventListener("click", (event) => {
   if (event.target === aboutOverlay) {
