@@ -1,4 +1,4 @@
-# ⌀ | UN — Incidence
+# ∅ | UN — Incidence
 
 Incidence is a mirror-reflection installation by FANSUDUR.
 
