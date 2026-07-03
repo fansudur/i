@@ -1,4 +1,4 @@
-# ∅ | UN — Incidence
+# ⌀ | UN — Incidence
 
 Incidence is a mirror-reflection installation by FANSUDUR.
 
@@ -6,8 +6,8 @@ Incidence is a mirror-reflection installation by FANSUDUR.
 
 Live pages:
 
-- Chinese: [fansudur.github.io/i](https://fansudur.github.io/i)
-- English: [fansudur.github.io/i/en](https://fansudur.github.io/i/en)
+- Chinese: [incidence.fansudur.com](https://incidence.fansudur.com/)
+- English: [incidence.fansudur.com/en](https://incidence.fansudur.com/en/)
 
 ## License
 
